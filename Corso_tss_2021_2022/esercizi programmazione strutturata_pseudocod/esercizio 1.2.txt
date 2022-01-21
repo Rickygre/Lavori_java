@@ -1,0 +1,17 @@
+
+esercizio 1.2
+
+start
+
+    x = leggi primo num ;
+    y = leggi secondo num ;
+
+    risultato = 0;
+    contatore = 1;
+
+    while ( contatore <= y) do
+        risultato = risultato + x ;
+        contatore = contatore + 1;
+    end while
+    stampa risultato
+end

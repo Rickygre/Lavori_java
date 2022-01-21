@@ -1,0 +1,21 @@
+
+dato in input un array di numeri: 
+ciclo che conta(indice) celle del array dal primo al ultimo disponibile.
+
+lenght= lunghezza array
+
+
+
+
+start
+
+	numeri = {2,5,3,56,54,34};
+	indice = 0;
+	while (indice < numeri.lenght) do
+		stampa numeri[indice];
+		indice = indice + 1;
+	end while
+
+
+
+end

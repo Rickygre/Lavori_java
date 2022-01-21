@@ -1,0 +1,37 @@
+start
+
+	x= leggi numero;
+	sommanp= 0;
+	sommand=0;
+	contanp=0;
+	contand=0;
+	mediap=0;
+	mediad=0;
+	while(x != 0 )do
+		
+		if (x è pari) then
+		contanp= contanp+1;
+		sommanp= sommanp + 1;
+		mediap= sommanp/contanp;
+
+		else
+		contand= contand+1;
+		sommand= sommand + 1;
+		mediad= sommand/contand;
+		end if
+		x = leggi numero;
+
+	end while
+
+	stampa mediap e mediad;
+
+	if (mediap > mediad) then
+		stampa mediap  maggiore
+	else if(mediad > mediap)
+		stampa mediad maggiore
+	else
+		stampa medie uguali;
+	end if
+
+
+end

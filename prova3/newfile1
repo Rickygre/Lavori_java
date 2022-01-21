@@ -1,0 +1,30 @@
+esercizio 1.3
+
+start
+
+    x = leggi num1; 
+    y = leggi num2;
+    quoziente= 0;
+    resto= 0;
+    calcola= x;
+
+    if (y != 0) then
+    
+        while (y <= calcola) do
+            
+            quoz = quoz + 1;
+            calcola = calcola - y;
+        
+
+        end while
+
+        resto = calcola;
+        stampa quoz e resto;
+
+    else
+        stampa impossibile calcolare la divisione x 0;
+    end if
+
+
+
+end

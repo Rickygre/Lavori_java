@@ -1,0 +1,25 @@
+start
+	
+	x = leggi base; 
+	y = leggi esponente; 
+	risultato= 1;
+	if(x non intero || y non intero) then
+		stampa almeno un numero che non è intero,impossibile proseguire
+		end
+	end if
+
+	if(y < 0) then
+		stampa esponente negativo,impossibile proseguire
+		end
+	end if
+	conta= 1;
+
+	while (conta <= y) do
+		conta = conta + 1;
+		risultato = risultato * x;
+	end while
+	stampa risultato
+
+	
+
+end
