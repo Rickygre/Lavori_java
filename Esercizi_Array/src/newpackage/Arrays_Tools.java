@@ -1,5 +1,7 @@
 package newpackage;
 
+import java.util.Arrays;
+
 public class Arrays_Tools {
 
     public static void stampa(int[] numeri) {
@@ -100,7 +102,47 @@ public class Arrays_Tools {
 
         } while (!ordinato);
 
-        return false;
+        return ordinato;
+
+    }
+
+    public static int[] copiaArray(int[] numeri) {
+        int[] ris = new int[numeri.length];
+        for (int i = 0; i < numeri.length; i++) {
+            ris[i] = numeri[i];
+
+        }
+
+        return ris;
+
+    }
+
+    public static int[] unisci(int[] numeri1, int[] numeri2) {
+        int dim1 = numeri1.length;
+        int dim2 = numeri2.length;
+        int dimOK = dim1 + dim2;
+
+        int[] unione = new int[dimOK];
+
+        for (int i = 0; i < dim1; i++) {
+            unione[i] = numeri1[i];
+
+        }
+        for (int i = 0; i < dim2; i++) {
+            unione[i + dim1] = numeri2[i];
+
+        }
+        return unione;
+
+    }
+
+    public static boolean contieneSequenza(int[] numeri1, int[] numeri2) {
+        boolean ris=false;
+        if(numeri1 == numeri2){
+            ris=true;
+        }
+        
+        return ris;
 
     }
 
