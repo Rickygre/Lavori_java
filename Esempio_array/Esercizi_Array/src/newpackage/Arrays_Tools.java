@@ -105,11 +105,12 @@ public class Arrays_Tools {
     }
 
     public static int[] copiaArray(int[] numeri) {
-        int[]ris=new int[numeri.length];
+        int[] ris = new int[numeri.length];
+        for (int i = 0; i < numeri.length; i++) {
+            ris[i] = numeri[i];
 
-        for (int i = 0; i < ris.length; i++) {
-            ris[i]= numeri[i];
         }
+
         return ris;
 
     }
