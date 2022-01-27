@@ -8,6 +8,10 @@ public class MainRicerca {
         int[] input = generaArrayCasuale(10, 20);
         Arrays_Tools.stampa(input);
 
+        //richiamo metodo stampa con all interno implemento il metodo copia e passo come
+        //parametro il valore input(ovvero l'array iniziale).
+        Arrays_Tools.stampa(Arrays_Tools.copiaArray(input));
+
         System.out.println(" IL NUMERO MAX è: " + Arrays_Tools.trovaMax(input));
 
         System.out.println("RICERCA:" + Arrays_Tools.ricerca(input, 9));
@@ -19,8 +23,6 @@ public class MainRicerca {
         System.out.println(" LA MEDIA DEGLI ARRAY È: " + Arrays_Tools.trovaMedia(input));
 
         System.out.println(" ordine trovato È: " + Arrays_Tools.trovaOrdine(input));
-        
-        System.out.println("copia di array: "+ Arrays_Tools.copiaArray(input));
 
     }
 
