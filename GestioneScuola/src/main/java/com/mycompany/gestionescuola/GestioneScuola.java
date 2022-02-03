@@ -28,6 +28,10 @@ public class GestioneScuola {
         c1.setDatainizio("2022-02-02");
         ok = c1.setDatainizio("2022-02-02");
         ok = c1.setDatainizio("2022/30/02");
+        
+        Esame es = new Esame("Guerrini",100,"Java");
+        Alunno esaminando= c1.getRegistro()[0];
+        esaminando.setLibretto(es);
 
     }
 
