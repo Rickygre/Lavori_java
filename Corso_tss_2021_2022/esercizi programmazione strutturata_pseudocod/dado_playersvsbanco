@@ -1,0 +1,16 @@
+start
+
+	soldi= leggi input;
+	while(soldi>0)do
+		dado_banco = lancio dado1; 
+		dado_player= lancio dado2;
+		stampa dado_banco,dado_player;
+		if(dado_player > dado_banco)then
+				soldi++;
+			stampa mano vinta dal giocatore;
+		else
+			soldi--;
+			stampa il banco vince!;
+
+
+end
