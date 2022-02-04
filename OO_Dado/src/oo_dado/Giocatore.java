@@ -26,12 +26,12 @@ public class Giocatore {
 
     }
 
-    public int getSoldi() {
-        return soldi;
-    }
-
     public boolean isContinua() {
         return soldi > minSoldi && soldi < maxSoldi;
+    }
+
+    public int getSoldi() {
+        return soldi;
     }
 
 }

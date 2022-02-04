@@ -3,6 +3,9 @@ package oo_dado;
 public class Main {
 
     public static void main(String[] args) {
+        //System.out.println("----------INIZIO PARTITA-------------");
+        Util.stampaConsole("----------INIZIO PARTITA-------------");
+        int nomegiocatore = Util.getInteger("Informare il numero");
         Giocatore g = new Giocatore(10, 15, 5);
         Dado dadoG = new Dado(6);
         Dado dadoB = new Dado(6);
@@ -22,6 +25,10 @@ public class Main {
             }
             conta++;
         } while (g.isContinua());
+        System.out.println("Saldo finale del Giocatore: " + g.getSoldi());
+        System.out.println("Riepilogo lanci partita del Banco: " + dadoB.getStoria());
+
+        System.out.println("----------FINE PARTITA-------------");
 
     }
 
@@ -32,7 +39,7 @@ public class Main {
     }
 
     private static void stampaGiocatore(int soldi) {
-        System.out.println("soldi giocatore" + soldi);
+        System.out.println(soldi);
     }
 
 }
