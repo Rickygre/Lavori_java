@@ -180,4 +180,33 @@ public class Corso { //creo una classe , che conterrà attributi e metodi.
 
     }
 
+    String getInfo() {
+        String ris = "";
+        ris += ("\n------Scheda corso-----");
+        ris += ("\nNome del corso : " + nomecorso);
+        ris += ("\nDurata del corso : " + durataore);
+        ris += ("\nDescrizione del corso : " + descrizione);
+        ris += ("\nData del corso : " + datainizio.toString());
+        ris += ("\nLink del corso : " + link + "\n");
+        return ris;
+
+    }
+
+    /**
+     * ritorna un csv con i corsi testata testo
+     *
+     * testata nomecorso;durataore;descrizione;datainizio;link elenco dati
+     * separati da ; e fine linea
+     *
+     * @return String csv
+     */
+    String getCSV() {
+        String ris = "";
+        //ris += (" nomecorso;durataore;descrizione;datainizio;link \n");
+        ris += nomecorso + ";" + durataore + ";" + descrizione + ";" + datainizio.toString() + ";" + link + "\n";
+
+        return ris;
+
+    }
+
 }
