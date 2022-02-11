@@ -10,25 +10,22 @@ import java.util.Random;
  */
 public class Mazzo {
 
-    private ArrayList<Carta> carte;
-    private final int numCarte;
+    public static final int NUMERO_CARTE = 52;
+
+    private final ArrayList<Carta> carte;
 
     public Mazzo() {
-        this(52);
-    }
-
-    public Mazzo(int numCarte) {
-        this.numCarte = numCarte;
-        carte = new ArrayList<>(numCarte); //creo oggetto mazzo di carte
-        creaMazzo();
+        carte = new ArrayList<>(NUMERO_CARTE);
+        crea();
 
     }
 
-    private void creaMazzo() {
+    public void crea() {
+        carte.clear();
         EnumSet<Carta.Seme> semi = EnumSet.allOf(Carta.Seme.class);
         for (Carta.Seme seme : semi) {
             for (int i = 1; i <= 13; i++) {
-                Carta.Nome nome = Carta.Nome.values()[i-1];
+                Carta.Nome nome = Carta.Nome.values()[i - 1];
                 if (i == 1) {
                     //asso
                     ArrayList<Integer> valori = new ArrayList<>(2);
@@ -48,11 +45,19 @@ public class Mazzo {
         }
     }
 
-    public Carta pesca() {
+    public int numeroCarte() {
+        return carte.size();
+    }
+
+    public Carta pesca(boolean coperta) {
         Random rnd = new Random();
         int index = rnd.nextInt(carte.size());
         Carta result = carte.get(index);
+        result.setCoperta(coperta);
         carte.remove(index);
+        if (carte.isEmpty()) {
+            crea();
+        }
         return result;
     }
 
@@ -64,5 +69,7 @@ public class Mazzo {
         }
         return result;
     }
+
+    
 
 }
