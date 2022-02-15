@@ -2,6 +2,7 @@ package com.mycompany.gestionescuola;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 
 public class Corso { //creo una classe , che conterrà attributi e metodi.
 
@@ -182,12 +183,12 @@ public class Corso { //creo una classe , che conterrà attributi e metodi.
 
     String getInfo() {
         String ris = "";
-        ris += ("\n------Scheda corso-----");
+        ris += ("------Scheda corso-----");
         ris += ("\nNome del corso : " + nomecorso);
         ris += ("\nDurata del corso : " + durataore);
         ris += ("\nDescrizione del corso : " + descrizione);
         ris += ("\nData del corso : " + datainizio.toString());
-        ris += ("\nLink del corso : " + link + "\n");
+        ris += ("\nLink del corso : " + link + "\n\n");
         return ris;
 
     }

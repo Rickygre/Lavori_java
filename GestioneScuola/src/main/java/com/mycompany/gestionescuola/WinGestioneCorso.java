@@ -80,9 +80,17 @@ public class WinGestioneCorso extends javax.swing.JFrame {
         lblTitolo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitolo.setText("Gestione Corsi");
 
+        txNomeCorso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txNomeCorsoActionPerformed(evt);
+            }
+        });
         txNomeCorso.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txNomeCorsoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txNomeCorsoKeyReleased(evt);
             }
         });
 
@@ -104,6 +112,11 @@ public class WinGestioneCorso extends javax.swing.JFrame {
         jLabel3.setText("Durata Ore:");
 
         txDataInizio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        txDataInizio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txDataInizioActionPerformed(evt);
+            }
+        });
         txDataInizio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txDataInizioKeyPressed(evt);
@@ -221,8 +234,7 @@ public class WinGestioneCorso extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txDataInizio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18))
+                            .addComponent(jLabel6)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,8 +325,6 @@ public class WinGestioneCorso extends javax.swing.JFrame {
         salvaCorsiCSV();
         int idcorso = -1;
 
-        
-
         btnUpdateCorso.setEnabled(false);
 
     }//GEN-LAST:event_btnUpdateCorsoActionPerformed
@@ -366,6 +376,18 @@ public class WinGestioneCorso extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_lstCorsiValueChanged
+
+    private void txNomeCorsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNomeCorsoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txNomeCorsoActionPerformed
+
+    private void txNomeCorsoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txNomeCorsoKeyReleased
+        
+    }//GEN-LAST:event_txNomeCorsoKeyReleased
+
+    private void txDataInizioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txDataInizioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txDataInizioActionPerformed
 
     private boolean validaCorso() {
         boolean ret = false;
@@ -433,6 +455,18 @@ public class WinGestioneCorso extends javax.swing.JFrame {
 
     }
 
+    private void refreshLista() {
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < WinGestione.listaCorsi.size(); i++) {
+            String nc = WinGestione.listaCorsi.get(i).getNomecorso();
+            model.addElement(nc);
+
+        }
+
+        lstCorsi.setModel(model);
+
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -491,15 +525,4 @@ public class WinGestioneCorso extends javax.swing.JFrame {
     private javax.swing.JTextField txNomeCorso;
     // End of variables declaration//GEN-END:variables
 
-    private void refreshLista() {
-        DefaultListModel model = new DefaultListModel();
-        for (int i = 0; i < WinGestione.listaCorsi.size(); i++) {
-            String nc = WinGestione.listaCorsi.get(i).getNomecorso();
-            model.addElement(nc);
-
-        }
-
-        lstCorsi.setModel(model);
-
-    }
 }
