@@ -229,16 +229,32 @@ public class WinDialogAnagrafica extends javax.swing.JDialog {
         if (index == -1) {
             return;
         }
+        int id = WinGestione.listaAnagrafiche.get(index).getId_anagrafica();
+        boolean ok = true;
+        for (Corso c : WinGestione.listaCorsi) {
 
-        int input = JOptionPane.showConfirmDialog(null, "Confermi l 'eliminazione?", "ELIMINA anagrafica", JOptionPane.OK_CANCEL_OPTION);
-        if (input == 0) {
-            WinGestione.listaAnagrafiche.remove(index);
-            salvaAnagraficaCSV();
-            refreshLista();
+            if (c.isAlunno(id) == true) {
+                ok = false;
+                break;
+            }
+
         }
+        if (ok) {
+
+            int input = JOptionPane.showConfirmDialog(null, "Confermi l 'eliminazione?", "ELIMINA anagrafica", JOptionPane.OK_CANCEL_OPTION);
+            if (input == 0) {
+
+                WinGestione.listaAnagrafiche.remove(index);
+                salvaAnagraficaCSV();
+                refreshLista();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "alunno iscritto al corso,impossibile eliminarlo!");
+            }
 
 
     }//GEN-LAST:event_btnEliminaActionPerformed
+    }
 
     /**
      * @param args the command line arguments

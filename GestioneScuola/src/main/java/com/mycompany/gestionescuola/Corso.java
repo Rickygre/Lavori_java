@@ -1,7 +1,6 @@
 package com.mycompany.gestionescuola;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 
 public class Corso { //creo una classe , che conterrà attributi e metodi.
@@ -13,7 +12,7 @@ public class Corso { //creo una classe , che conterrà attributi e metodi.
     private LocalDate datainizio;
     private String link = "www.ciacformazione.it";
     //creo array (registro) che conterrà 30 alunni;
-    private Alunno[] registro = new Alunno[30];
+    private ArrayList<Anagrafica> registro = new ArrayList<>();
     //elenco alunni
 
     //costruttori
@@ -131,11 +130,11 @@ public class Corso { //creo una classe , che conterrà attributi e metodi.
         this.link = link;
     }
 
-    public Alunno[] getRegistro() {
+    public ArrayList<Anagrafica> getRegistro() {
         return registro;
     }
 
-    public void setRegistro(Alunno[] registro) {
+    public void setRegistro(ArrayList<Anagrafica> registro) {
         this.registro = registro;
     }
 
@@ -151,36 +150,33 @@ public class Corso { //creo una classe , che conterrà attributi e metodi.
 
     }
 
-    void insertAlunno(Alunno alunno, int pos) {
+    void updateAlunno(Anagrafica alunno, int pos) {
 
-        registro[pos] = alunno;
+        registro.set(pos, alunno);
     }
 
-    void insertAlunno(Alunno alunno) {
-        int pos = 0;
-        for (int i = 0; i < registro.length; i++) {
-            if (registro[i] == null) {
-                pos = i;
-                break;
-            }
+    boolean insertAlunno(Anagrafica alunno) {
+        int ida = alunno.getId_anagrafica();
 
-        }
+        for (Anagrafica al : registro) {
+            if (al.getId_anagrafica() == ida) {
 
-        registro[pos] = alunno;
-    }
-
-    void stampaRegistro() {
-
-        for (int i = 0; i < registro.length; i++) {
-            if (registro[i] == null) {
-                break;
-            } else {
-                registro[i].stampaAlunno();
+                return false;
             }
         }
 
+        registro.add(alunno);
+        return true;
     }
 
+    /*void stampaRegistro() {
+
+        for (Anagrafica al: registro) {
+            al.stampaAlunno();
+            
+        }
+
+    }*/
     String getInfo() {
         String ris = "";
         ris += ("------Scheda corso-----");
@@ -204,10 +200,27 @@ public class Corso { //creo una classe , che conterrà attributi e metodi.
     String getCSV() {
         String ris = "";
         //ris += (" nomecorso;durataore;descrizione;datainizio;link \n");
-        ris += nomecorso + ";" + durataore + ";" + descrizione + ";" + datainizio.toString() + ";" + link + "\n";
+        String lr = "";
+        for (Anagrafica al : registro) {
+            lr += al.getId_anagrafica() + ",";
+        }
+        if (lr.length() > 0) {
+            lr = lr.substring(0, lr.length() - 1);
+        }
+
+        ris += nomecorso + ";" + durataore + ";" + descrizione + ";" + datainizio.toString() + ";" + link + ";" + lr + "\n";
 
         return ris;
 
+    }
+
+    public boolean isAlunno(int id) {
+        for (Anagrafica a : registro) {
+            if (a.getId_anagrafica() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

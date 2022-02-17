@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 public class winDialogCorsi extends javax.swing.JDialog {
 
@@ -14,9 +15,9 @@ public class winDialogCorsi extends javax.swing.JDialog {
     public winDialogCorsi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
-        refreshLista();
-        refreshListaA();
+        this.setLocationRelativeTo(this);
+        refreshListaCorsi();
+        refreshListaAnagrafe();
         spDurata.setValue(1);
     }
 
@@ -55,10 +56,11 @@ public class winDialogCorsi extends javax.swing.JDialog {
         jScrollPane4 = new javax.swing.JScrollPane();
         lstAnagrafica = new javax.swing.JList<>();
         btnIscrivi = new javax.swing.JButton();
+        btnEliminaCorso = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnCreaCorso.setText("Conferma nuovo Corso");
+        btnCreaCorso.setText("Conferma dati");
         btnCreaCorso.setEnabled(false);
         btnCreaCorso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,11 +99,6 @@ public class winDialogCorsi extends javax.swing.JDialog {
         lblTitolo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitolo.setText("Gestione Corsi");
 
-        lstCorsi.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         lstCorsi.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstCorsiValueChanged(evt);
@@ -158,26 +155,23 @@ public class winDialogCorsi extends javax.swing.JDialog {
 
         lstRegistro.setBackground(new java.awt.Color(255, 153, 153));
         lstRegistro.setForeground(new java.awt.Color(0, 0, 0));
-        lstRegistro.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(lstRegistro);
 
         lstAnagrafica.setBackground(new java.awt.Color(153, 153, 255));
         lstAnagrafica.setForeground(new java.awt.Color(0, 0, 0));
-        lstAnagrafica.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane4.setViewportView(lstAnagrafica);
 
         btnIscrivi.setText("iscrivi");
         btnIscrivi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIscriviActionPerformed(evt);
+            }
+        });
+
+        btnEliminaCorso.setText("Elimina corso");
+        btnEliminaCorso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminaCorsoActionPerformed(evt);
             }
         });
 
@@ -198,7 +192,7 @@ public class winDialogCorsi extends javax.swing.JDialog {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,22 +217,24 @@ public class winDialogCorsi extends javax.swing.JDialog {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnPrepnewCorso, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnUpdateCorso)
-                                    .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane3))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btnIscrivi, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(23, 23, 23)))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnUpdateCorso)
+                                            .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnEliminaCorso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(317, 317, 317)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane4)
+                                    .addComponent(jScrollPane3)
+                                    .addComponent(btnIscrivi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
@@ -254,7 +250,9 @@ public class winDialogCorsi extends javax.swing.JDialog {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(btnPrepnewCorso)
-                        .addGap(44, 44, 44)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminaCorso)
+                        .addGap(13, 13, 13)
                         .addComponent(btnUpdateCorso)
                         .addGap(71, 71, 71)
                         .addComponent(btnClose)
@@ -327,7 +325,7 @@ public class winDialogCorsi extends javax.swing.JDialog {
         txDataInizio.setText("");
         spDurata.setValue(1);
         lstCorsi.setSelectedIndex(-1);
-        refreshLista();
+        refreshListaCorsi();
 
         //mostra elenco aggiornato in display di listacorsi
         salvaCorsi();
@@ -393,6 +391,9 @@ public class winDialogCorsi extends javax.swing.JDialog {
         String dataok = c.getDatainizio().format(ddmmaa);
         txDataInizio.setText(dataok);
         spDurata.setValue(c.getDurataore());
+        salvaCorsi();
+        validaCorso();
+        refreshLstRegistro();
 
     }//GEN-LAST:event_lstCorsiValueChanged
 
@@ -420,22 +421,44 @@ public class winDialogCorsi extends javax.swing.JDialog {
 
     private void btnIscriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIscriviActionPerformed
         // TODO add your handling code here:
-        int index = lstAnagrafica.getSelectedIndex();
-        if (index == -1) {
+        int indexA = lstAnagrafica.getSelectedIndex();
+        if (indexA == -1) {
             return;
         }
-        String c = WinGestione.listaAnagrafiche.get(index).getCognome();
-        String n = WinGestione.listaAnagrafiche.get(index).getNome();
+        int indexC = lstCorsi.getSelectedIndex();
+        if (indexC == -1) {
+            return;
+        }
+        Anagrafica daiscrivere = WinGestione.listaAnagrafiche.get(indexA);
+        
 
-        Alunno al = new Alunno(n, c);
-        int idcorso = lstCorsi.getSelectedIndex();
-        WinGestione.listaCorsi.get(idcorso).insertAlunno(al);
-        refreshLstRegistro();
+        boolean ok = WinGestione.listaCorsi.get(indexC).insertAlunno(daiscrivere);
+        if (!ok)
+            JOptionPane.showMessageDialog(null, "utente già presente!");
+        else
+            refreshLstRegistro();
+            salvaCorsiCSV();
     }//GEN-LAST:event_btnIscriviActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnEliminaCorsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaCorsoActionPerformed
+        // TODO add your handling code here:
+        
+        // avere l'indice del corso da eliminare
+        int indexC = lstCorsi.getSelectedIndex();
+        if (indexC == -1 ){
+            return;
+        }
+        
+        int input = JOptionPane.showConfirmDialog(null, "Confermi l 'eliminazione?", "ELIMINA corso", JOptionPane.OK_CANCEL_OPTION);
+        if (input == 0){
+            WinGestione.listaCorsi.remove(indexC);
+            salvaCorsiCSV();
+            refreshListaCorsi();
+        }
+        
+    }//GEN-LAST:event_btnEliminaCorsoActionPerformed
+
+    
     private boolean validaCorso() {
         boolean ret = false;
         int val = (int) spDurata.getValue();
@@ -480,7 +503,7 @@ public class winDialogCorsi extends javax.swing.JDialog {
         //recupero un corso per volta
         //estraggo info di tipo string
         //aggiungo info ad un testo generico e poi setto in display
-        String testoDisplay = "nomecorso;durataore;descrizione;datainizio;link \n";
+        String testoDisplay = "nomecorso;durataore;descrizione;datainizio;link;lista_id_alunni\n";
         for (int i = 0; i < listaCorsi.size(); i++) {
             //recupero un corso per volta
             Corso c = listaCorsi.get(i);
@@ -502,7 +525,7 @@ public class winDialogCorsi extends javax.swing.JDialog {
 
     }
 
-    private void refreshLista() {
+    private void refreshListaCorsi() {
         DefaultListModel model = new DefaultListModel();
         for (int i = 0; i < WinGestione.listaCorsi.size(); i++) {
             String nc = WinGestione.listaCorsi.get(i).getNomecorso();
@@ -514,7 +537,7 @@ public class winDialogCorsi extends javax.swing.JDialog {
 
     }
 
-    private void refreshListaA() {
+    private void refreshListaAnagrafe() {
         //creo modello dati, aggiungo elementi e lo setto
         DefaultListModel model = new DefaultListModel();
         for (int i = 0; i < WinGestione.listaAnagrafiche.size(); i++) {
@@ -530,6 +553,19 @@ public class winDialogCorsi extends javax.swing.JDialog {
     }
 
     private void refreshLstRegistro() {
+
+        int idxcorso = lstCorsi.getSelectedIndex();
+        if (idxcorso == -1) {
+            return;
+        }
+        Corso c = WinGestione.listaCorsi.get(idxcorso);
+
+        DefaultListModel model = new DefaultListModel();
+        for (Anagrafica al : c.getRegistro()) {
+            String nc = al.getCognome() + " " + al.getNome();
+            model.addElement(nc);
+        }
+        lstRegistro.setModel(model);
 
     }
 
@@ -575,6 +611,7 @@ public class winDialogCorsi extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnCreaCorso;
+    private javax.swing.JButton btnEliminaCorso;
     private javax.swing.JButton btnIscrivi;
     private javax.swing.JButton btnPrepnewCorso;
     private javax.swing.JButton btnUpdateCorso;
