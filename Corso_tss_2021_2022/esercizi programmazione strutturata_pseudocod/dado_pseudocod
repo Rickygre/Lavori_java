@@ -1,0 +1,47 @@
+start
+
+
+	punteggio= leggo input;
+	
+	
+	G1=giocatore1;
+	G2=giocatore2;
+	
+	pG1 = 0;
+	pG2 = 0;
+	
+	
+
+	while(pG1 < punteggio and pG2 < punteggio)do 
+		dado1 = lancio dado1; 
+		dado2= lancio dado2;
+		stampa dado1,dado2
+
+		if(dado1 > dado2)then
+			pG1++;
+			stampa mano vinta da G1;
+		else if (dado2>dado1)
+			pG2=++;
+			stampa mano vinta da G2;
+
+		else 
+			stampa mano patta
+		end if
+
+	end while
+
+	if(pG1==punteggio)then 
+		stampa "giocatore1 hai vinto!";
+
+	else
+				
+		stampa "giocatore2 hai vinto!";
+			
+		
+
+end
+	
+	
+	
+	
+
