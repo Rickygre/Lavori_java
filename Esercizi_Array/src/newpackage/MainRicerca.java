@@ -1,12 +1,15 @@
 package newpackage;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class MainRicerca {
 
     public static void main(String[] args) {
         int[] input = generaArrayCasuale(10, 20);
+
         Arrays_Tools.stampa(input);
+        Arrays_Tools.stampa(Arrays_Tools.copiaArray(input));
 
         System.out.println(" IL NUMERO MAX è: " + Arrays_Tools.trovaMax(input));
 
@@ -19,6 +22,9 @@ public class MainRicerca {
         System.out.println(" LA MEDIA DEGLI ARRAY È: " + Arrays_Tools.trovaMedia(input));
 
         System.out.println(" ordine trovato È: " + Arrays_Tools.trovaOrdine(input));
+
+        Arrays_Tools.stampa(Arrays_Tools.unisci(input, input));
+        System.out.println("La sequenza degli array è:  " + Arrays_Tools.contieneSequenza(input, input));
 
     }
 
