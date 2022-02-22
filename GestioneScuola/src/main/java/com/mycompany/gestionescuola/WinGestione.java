@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DateFormatter;
 
@@ -91,6 +92,11 @@ public class WinGestione extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblCorsi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCorsiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblCorsi);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,9 +154,16 @@ public class WinGestione extends javax.swing.JFrame {
         refreshTable();
     }//GEN-LAST:event_formWindowActivated
 
+    private void tblCorsiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCorsiMouseClicked
+        // TODO add your handling code here:
+        int index = tblCorsi.getSelectedRow();
+        JOptionPane.showMessageDialog(null, listaCorsi.get(index).getInfo());
+        
+    }//GEN-LAST:event_tblCorsiMouseClicked
+
     private void refreshTable() {
         //recuperare la struttura dati della mia tabella come model
-        //creo un cast di dafulttablemodel tra tonde
+        //creo un cast di default tablemodel tra tonde
         DefaultTableModel model = (DefaultTableModel) tblCorsi.getModel();
         //pulire la tabella dai dati precedenti setto la dimensione a zero.
         model.setRowCount(0);
