@@ -1,7 +1,7 @@
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 /**
  *
@@ -10,87 +10,75 @@ import java.util.Objects;
 public class Room {
 
     private String nomeCliente;
-    private int dataInizioP;
-    private int dataFineP;
-
-    List prenotazioni = Arrays.asList();
-
-    public Room(String nomeCliente, int dataInizioPrenotazione, int dataFinePrenotazione) {
+    private int dataArrivo;
+    private int dataPartenza;
+    
+    
+    
+    int [] giornoanno= new int [365];
+    
+    
+    List<Room> list = new ArrayList<>();
+    
+    
+    
+    public Room(String nomeCliente, int dataArrivo, int dataPartenza) {
         this.nomeCliente = nomeCliente;
-        this.dataInizioP = dataInizioP;
-        this.dataFineP = dataFineP;
+        this.dataArrivo = dataArrivo;
+        this.dataPartenza = dataPartenza;
     }
 
     Room() {
 
     }
 
-    public String getNome() {
+    public String getNomeCliente() {
         return nomeCliente;
     }
 
-    public void setNome(String nome) {
-        this.nomeCliente = nome;
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 
-    public int getDataInizioP() {
-        return dataInizioP;
+    public int getDataArrivo() {
+        return dataArrivo;
     }
 
-    public void setDataInizioP(int dataInizioP) {
-        this.dataInizioP = dataInizioP;
+    public void setDataArrivo(int dataArrivo) {
+        this.dataArrivo = dataArrivo;
     }
 
-    public int getDataFineP() {
-        return dataFineP;
+    public int getDataPartenza() {
+        return dataPartenza;
     }
 
-    public void setDataFineP(int dataFineP) {
-        this.dataFineP = dataFineP;
+    public void setDataPartenza(int dataPartenza) {
+        this.dataPartenza = dataPartenza;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 61 * hash + Objects.hashCode(this.nomeCliente);
-        hash = 61 * hash + this.dataInizioP;
-        hash = 61 * hash + this.dataFineP;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+   
+    
+    
+    public boolean checkDisponibile(Room r){
+        boolean camera_libera= true;
+        list.add(r);
+        r.getNomeCliente();
+        r.getDataArrivo();
+        r.getDataPartenza();
+        
+        
+        
+        if(dataArrivo >= 20 && dataPartenza <= 34){
+            System.out.println("camera occupata!");
+            
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Room other = (Room) obj;
-        if (this.dataInizioP != other.dataInizioP) {
-            return false;
-        }
-        if (this.dataFineP != other.dataFineP) {
-            return false;
-        }
-        return Objects.equals(this.nomeCliente, other.nomeCliente);
+        return camera_libera;
     }
-
-    public List reserve(String nome, int dataInizio, int dataFine) {
-
-        if (prenotazioni.equals(dataInizio) == prenotazioni.contains(dataInizio)) {
-            System.out.println("camera già occupata!");
-
-        } else {
-            prenotazioni.add(reserve(nome, dataInizio, dataFine)
-            );
-        }
-
-        return prenotazioni;
-
-    }
+    
+    
+    
 
 }
+
+
+

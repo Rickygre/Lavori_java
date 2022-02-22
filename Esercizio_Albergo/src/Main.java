@@ -1,7 +1,4 @@
 
-
-import java.util.List;
-
 /**
  *
  * @author riccardo
@@ -12,15 +9,11 @@ public class Main {
 
         Room r = new Room();
 
-        List p1 = r.reserve("gigi", 28, 29);
-        List p2 = r.reserve("luca", 13, 16);
-        List p3 = r.reserve("rita", 5, 12);
-        List p4 = r.reserve("ugo", 20, 27);
-        
-        
-        
-        
-        
+        Prenotazioni p1 = new Prenotazioni("luca", 20, 34);
+        Prenotazioni p2 = new Prenotazioni("luisa", 10, 15);
+        Prenotazioni p3 = new Prenotazioni("luisa", 21, 28);
+
+   
         
 
     }
