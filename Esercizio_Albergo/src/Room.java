@@ -1,7 +1,10 @@
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -9,76 +12,39 @@ import java.util.List;
  */
 public class Room {
 
-    private String nomeCliente;
-    private int dataArrivo;
-    private int dataPartenza;
-    
-    
-    
-    int [] giornoanno= new int [365];
-    
-    
-    List<Room> list = new ArrayList<>();
-    
-    
-    
-    public Room(String nomeCliente, int dataArrivo, int dataPartenza) {
-        this.nomeCliente = nomeCliente;
-        this.dataArrivo = dataArrivo;
-        this.dataPartenza = dataPartenza;
-    }
+    private List<Reservation> list = new ArrayList(); //creo un elenco di prenotazioni
 
-    Room() {
-
-    }
-
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
-    public int getDataArrivo() {
-        return dataArrivo;
-    }
-
-    public void setDataArrivo(int dataArrivo) {
-        this.dataArrivo = dataArrivo;
-    }
-
-    public int getDataPartenza() {
-        return dataPartenza;
-    }
-
-    public void setDataPartenza(int dataPartenza) {
-        this.dataPartenza = dataPartenza;
-    }
-
-   
-    
-    
-    public boolean checkDisponibile(Room r){
-        boolean camera_libera= true;
-        list.add(r);
-        r.getNomeCliente();
-        r.getDataArrivo();
-        r.getDataPartenza();
-        
-        
-        
-        if(dataArrivo >= 20 && dataPartenza <= 34){
-            System.out.println("camera occupata!");
-            
+    //il metodo reserve ritorna come tipo di una classe ossia Reservations
+    public Reservation reserve(String nome, LocalDate inizio, LocalDate fine) {
+        //creo un oggetto di tipo reservations
+        Reservation r = new Reservation(nome, inizio, fine);
+        if (isOccupata(r)) {
+            throw new IllegalArgumentException("periodo occupata");
         }
-        return camera_libera;
+        list.add(r);
+        return r;
+
     }
-    
-    
-    
+
+    public List<Reservation> reservations() {
+        Comparator<Reservation> comp = (r1, r2) -> r1.getDatainizio().compareTo(r2.getDatainizio());
+
+        return list.stream().sorted(comp).collect(Collectors.toList());
+
+    }
+
+    //creo un metodo per vedere se è occupata e gli passo come parametro un tipo reservation
+    private boolean isOccupata(Reservation nuova) {
+        //scorro la lista delle prenotazioni per identificare se è libero il periodo
+        Predicate<Reservation> inizioNonvalido = (r)
+                -> !nuova.getDatainizio().isBefore(r.getDatainizio()) && !nuova.getDatainizio().isAfter(r.getDatafine());
+        Predicate<Reservation> fineNonvalido = (r)
+                -> !nuova.getDatafine().isBefore(r.getDatainizio()) && !nuova.getDatafine().isAfter(r.getDatafine());
+        Predicate<Reservation> tuttoNonvalido = (r)
+                -> nuova.getDatainizio().isBefore(r.getDatainizio()) && nuova.getDatafine().isAfter(r.getDatafine());
+
+        return list.stream().anyMatch(inizioNonvalido.or(fineNonvalido).or(tuttoNonvalido));
+
+    }
 
 }
-
-
-
