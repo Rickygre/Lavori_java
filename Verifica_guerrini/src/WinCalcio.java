@@ -20,6 +20,7 @@ public class WinCalcio extends javax.swing.JFrame {
         caricaPartiteCSV();
         refreshElencoSquadre();
         refreshTablePartite();
+        refreshTableClassifica();
 
     }
 
@@ -75,6 +76,8 @@ public class WinCalcio extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(lstListaSquadre);
 
+        tblElencoPartite.setBackground(new java.awt.Color(102, 255, 255));
+        tblElencoPartite.setForeground(new java.awt.Color(255, 0, 0));
         tblElencoPartite.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -127,6 +130,7 @@ public class WinCalcio extends javax.swing.JFrame {
 
         jLabel13.setText("Classifica:");
 
+        tblClassifica.setBackground(new java.awt.Color(255, 102, 255));
         tblClassifica.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -301,6 +305,7 @@ public class WinCalcio extends javax.swing.JFrame {
 
         elencopartite.add(p);
         refreshTablePartite();
+        refreshTableClassifica();
         salvaPartiteCSV();
 
 
@@ -538,7 +543,7 @@ public class WinCalcio extends javax.swing.JFrame {
 
         for (Classifica c : elencoClassifica) {
 
-            rowData[0] = c.getSquadra();
+            rowData[0] = c.getNomeSquadra();
             rowData[1] = c.getPunti();
             rowData[2] = c.getGoalfatti();
             rowData[3] = c.getGoalsubiti();
@@ -552,12 +557,49 @@ public class WinCalcio extends javax.swing.JFrame {
     private void setClassifica() {
         elencoClassifica = new ArrayList<>();
         for (Squadra s : elencosq) {
-            Classifica classifica = new Classifica(s);
-            
-            
-            
+            Classifica cl = new Classifica(s);
+            for (Partita p : elencopartite) {
+                if (cl.getNomeSquadra().equals(p.getSquadraCasa())) {
+                    if (p.getGoalCasa() > p.getGoalTrasferta()) {
+                        cl.addPunti(3);
+                        cl.addgoalFatti(p.getGoalCasa());
+                        cl.addgoalSubiti(p.getGoalTrasferta());
+
+                    } else if (p.getGoalCasa() == p.getGoalTrasferta()) {
+                        cl.addPunti(1);
+                        cl.addgoalFatti(p.getGoalCasa());
+                        cl.addgoalSubiti(p.getGoalTrasferta());
+
+                    } else {
+                        cl.addgoalFatti(p.getGoalCasa());
+                        cl.addgoalSubiti(p.getGoalTrasferta());
+
+                    }
+                }
+                if (cl.getNomeSquadra().equals(p.getSquadraTrasferta())) {
+                    if (p.getGoalTrasferta()> p.getGoalCasa()) {
+                        cl.addPunti(3);
+
+                        cl.addgoalSubiti(p.getGoalCasa());
+                        cl.addgoalFatti(p.getGoalTrasferta());
+
+                    } else if (p.getGoalCasa() == p.getGoalTrasferta()) {
+                        cl.addPunti(1);
+
+                        cl.addgoalSubiti(p.getGoalCasa());
+                        cl.addgoalFatti(p.getGoalTrasferta());
+
+                    } else {
+                        cl.addgoalSubiti(p.getGoalCasa());
+                        cl.addgoalFatti(p.getGoalTrasferta());
+                    }
+
+                }
+
+            }
+            elencoClassifica.add(cl);
+
         }
-        
 
     }
 

@@ -51,6 +51,10 @@ public class Classifica implements Comparable<Classifica> {
         this.goalsubiti = goalsubiti;
     }
 
+    public String getNomeSquadra() {
+        return squadra.getNome();
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -90,5 +94,21 @@ public class Classifica implements Comparable<Classifica> {
         int p1 = punti;
         return c2.punti - p1;
     }
+
+    public int addPunti(int punti) {
+
+        return this.punti = +punti;
+
+    }
+
+    public int addgoalFatti(int goalFatti) {
+        return this.goalfatti =+ goalFatti;
+    }
+    
+    public int addgoalSubiti(int goalSubiti) {
+        return this.goalsubiti =+ goalSubiti;
+    }
+    
+    
 
 }
