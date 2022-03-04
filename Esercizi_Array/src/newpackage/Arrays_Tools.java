@@ -1,7 +1,5 @@
 package newpackage;
 
-import java.util.Arrays;
-
 public class Arrays_Tools {
 
     public static void stampa(int[] numeri) {
@@ -79,7 +77,7 @@ public class Arrays_Tools {
 
     }
 
-    public static boolean trovaOrdine(int[] numeri) {
+    public static boolean ricerca2(int[] numeri) {
 
         int tmp;
         boolean ordinato;
@@ -102,7 +100,7 @@ public class Arrays_Tools {
 
         } while (!ordinato);
 
-        return ordinato;
+        return false;
 
     }
 
@@ -136,12 +134,31 @@ public class Arrays_Tools {
 
     }
 
-    public static boolean contieneSequenza(int[] numeri1, int[] numeri2) {
-        boolean ris=false;
-        if(numeri1 == numeri2){
-            ris=true;
+    public static int[] intersezione(int[] numeri1, int[] numeri2) {
+        //prendere elementi comuni dei due array
+        int[] ris = {};
+        for (int n : numeri1) {
+            if (ricerca(numeri2, n) == false && ricerca(numeri2, n) == true) {
+                int[] tmp = new int[1];
+                tmp[0] = n;
+                ris = unisci(ris, tmp);
+            }
+
         }
-        
+
+        return ris;
+
+    }
+
+    public static boolean contieneValori(int[] numeri1, int[] numeri2) {
+        boolean ris = true;
+        for (int n : numeri2) {
+            if (ricerca(numeri1, n) == false) {
+                ris = false;
+            }
+            break;
+
+        }
         return ris;
 
     }

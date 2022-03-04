@@ -35,9 +35,7 @@ public class Banco {
         return valoreMano() > 21;
     }
 
-    
-    
-     @Override
+    @Override
     public String toString() {
         String result = "-------- Banco ------------- \n";
         for (Carta carta : mano) {
@@ -48,21 +46,20 @@ public class Banco {
     }
 
     void iniziaMano() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        mano.clear();
     }
 
-    boolean isContinuaMano() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void incrementaSoldi() {
+        soldi++;
     }
 
-    void incrementaSoldi() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void decrementaSoldi() {
+        soldi--;
     }
-    
-    
-    
-    
-    
-    
+
+    public boolean isContinuaMano() {
+
+        return valoreMano() <= 15;
+    }
 
 }
