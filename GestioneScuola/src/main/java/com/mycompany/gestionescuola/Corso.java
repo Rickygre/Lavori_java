@@ -155,8 +155,6 @@ public class Corso { //creo una classe , che conterrà attributi e metodi.
         registro.set(pos, alunno);
     }
 
-   
-
     boolean insertAlunno(Anagrafica alunno) {
         int ida = alunno.getId_anagrafica();
 
@@ -224,8 +222,5 @@ public class Corso { //creo una classe , che conterrà attributi e metodi.
         }
         return false;
     }
-
-   
-
 
 }

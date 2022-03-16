@@ -50,8 +50,4 @@ public class Anagrafica {
         return id_anagrafica + ";" + cognome + ";" + nome + ";" + mail + "\n";
     }
 
-  
-
- 
-
 }
